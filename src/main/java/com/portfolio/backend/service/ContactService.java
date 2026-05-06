@@ -75,9 +75,11 @@ public class ContactService {
                 .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            
+
             if (response.statusCode() == 204 || response.statusCode() == 200) {
                 log.info("Notification Discord envoyee pour le contact de {}", message.getEmail());
+            } else if (response.statusCode() == 429) {
+                log.debug("Rate limit Discord atteint pour {}, notification ignoree", message.getEmail());
             } else {
                 log.warn("Echec envoi Discord: HTTP {}", response.statusCode());
             }

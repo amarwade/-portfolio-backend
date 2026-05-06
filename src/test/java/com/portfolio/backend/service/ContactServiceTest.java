@@ -28,7 +28,8 @@ class ContactServiceTest {
                 mailSender,
                 false,
                 "",
-                "noreply@portfolio.local"
+                "noreply@portfolio.local",
+                ""
         );
 
         ContactMessage input = new ContactMessage(
